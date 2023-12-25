@@ -28,6 +28,10 @@ jobs:
     needs: build
     runs-on: [aws-ec2]
     steps:
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+          sudo usermod -aG docker runner
       - name: Pull Image From DockerHub
         run: docker pull ragul05/springbootexampleforgithubaction:latest
       - name: Delete Old Container
